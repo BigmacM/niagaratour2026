@@ -6,10 +6,17 @@ import {
   Star,
   ChevronRight,
   MessageCircle,
+  Heart,
+  Compass,
+  Waves,
+  Building2,
+  Flower2,
+  Wine,
+  Mountain,
+  Camera,
 } from "lucide-react";
 import Link from "next/link";
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { BookingFlow } from "@/components/BookingFlow";
 
 const FEATURES = [
   {
@@ -38,65 +45,133 @@ const FEATURES = [
   },
 ];
 
+const TOURS = [
+  {
+    id: "niagara-flagship",
+    name: "Niagara Flagship",
+    duration: "9 hours",
+    price: "$400",
+    description:
+      "The ultimate Niagara day. Floral Clock, Whirlpool Rapids, NOTL Wineries, and 3 hours at Horseshoe Falls.",
+    icon: Waves,
+    gradient: "from-blue-500 to-cyan-400",
+    badge: "Most Popular",
+    badgeColor: "bg-niagara-blue",
+    image: "Horseshoe Falls panoramic with mist, rainbow, and blue skies",
+  },
+  {
+    id: "toronto-highlights",
+    name: "Toronto Highlights",
+    duration: "5 hours",
+    price: "$400",
+    description:
+      "CN Tower, Distillery District, St. Lawrence Market, Kensington Market, and the Harbourfront.",
+    icon: Building2,
+    gradient: "from-slate-600 to-gray-400",
+    badge: "City Explorer",
+    badgeColor: "bg-gray-600",
+    image: "Toronto skyline with CN Tower from the Toronto Islands",
+  },
+  {
+    id: "couples-spa",
+    name: "Couples Spa & Falls",
+    duration: "10 hours",
+    price: "$550",
+    description:
+      "Romantic spa retreat, vineyard lunch with wine pairings, champagne at the Falls. Roses available.",
+    icon: Heart,
+    gradient: "from-rose-500 to-pink-400",
+    badge: "Romantic",
+    badgeColor: "bg-rose-500",
+    image: "Romantic couples spa setting with candles, flowers, and champagne",
+  },
+  {
+    id: "custom-private",
+    name: "Custom Private Tour",
+    duration: "Flexible",
+    price: "$400+",
+    description:
+      "Design your own itinerary. Winery crawl, photography tour, multi-day adventure — you name it.",
+    icon: Compass,
+    gradient: "from-amber-500 to-orange-400",
+    badge: "Your Rules",
+    badgeColor: "bg-amber-500",
+    image: "Luxury SUV on a scenic Niagara Escarpment road at golden hour",
+  },
+];
+
 const ITINERARY = [
   {
     time: "8:00 AM",
     title: "GTA Pickup",
     description:
-      "Your driver arrives at your door in the Mazda CX-90. Settle in for a scenic 1.5-2 hour drive.",
-    image: "Luxury Mazda CX-90 SUV parked at a residential driveway",
+      "Your driver arrives at your door in the Mazda CX-90. Settle in with bottled water and a curated playlist for the scenic drive.",
+    icon: Car,
+    gradient: "from-sky-400 to-blue-500",
   },
   {
     time: "10:00 AM",
     title: "Floral Clock",
     description:
-      "First stop: the iconic Floral Clock, one of the largest in the world. Perfect photo opportunity.",
-    image: "The Floral Clock near Niagara Falls with colorful flower arrangements",
+      "First stop: the iconic Floral Clock with over 16,000 seasonal plants. A perfect photo opportunity.",
+    icon: Flower2,
+    gradient: "from-green-400 to-emerald-500",
   },
   {
     time: "10:30 AM",
     title: "Whirlpool Rapids",
     description:
-      "Marvel at the raw power of the Niagara Whirlpool and Class 6 rapids from the scenic overlook.",
-    image: "Aerial view of the Niagara Whirlpool and churning rapids",
+      "Marvel at Class 6 rapids churning through the Niagara Gorge from the scenic overlook.",
+    icon: Waves,
+    gradient: "from-cyan-400 to-teal-500",
   },
   {
     time: "11:30 AM",
-    title: "Niagara-on-the-Lake Wineries",
+    title: "NOTL Wineries",
     description:
-      "Visit a world-class winery in the charming town of Niagara-on-the-Lake. Sample award-winning ice wines.",
-    image: "Vineyard rows in Niagara-on-the-Lake with historic buildings",
+      "Visit a world-class estate winery. Sample award-winning Icewines and Pinot Noirs with vineyard views.",
+    icon: Wine,
+    gradient: "from-purple-400 to-violet-500",
   },
   {
     time: "1:00 PM",
-    title: "3 Hours at Niagara Falls",
+    title: "3 Hours at the Falls",
     description:
-      "The main event. Explore Horseshoe Falls, Table Rock, and the surrounding parkland at your own pace.",
-    image: "Panoramic view of Horseshoe Falls with mist rising",
+      "The main event. Explore Horseshoe Falls, Table Rock, and the gorge trail at your own pace.",
+    icon: Mountain,
+    gradient: "from-blue-500 to-indigo-600",
   },
   {
     time: "4:00 PM",
     title: "Return Journey",
     description:
-      "Relax on the scenic drive back to the GTA. Your driver drops you off right at your door.",
-    image: "Sunset view from the QEW highway with Toronto skyline in distance",
+      "Relax on the scenic lakeshore drive back. Your driver drops you at your door by sunset.",
+    icon: Camera,
+    gradient: "from-orange-400 to-rose-500",
   },
 ];
 
 const CITIES = [
-  "Toronto", "Mississauga", "Brampton", "Oakville", "Milton",
-  "Burlington", "Vaughan", "Markham", "Richmond Hill", "Scarborough",
+  "Toronto",
+  "Mississauga",
+  "Brampton",
+  "Oakville",
+  "Milton",
+  "Burlington",
+  "Vaughan",
+  "Markham",
+  "Richmond Hill",
+  "Scarborough",
 ];
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center">
-        <div className="absolute inset-0 bg-gradient-to-br from-niagara-blue/5 via-white to-sunset-gold/10" />
-        {/* Placeholder hero image background */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-niagara-blue/5 via-white to-cyan-50" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/30 z-10" />
           <div className="absolute right-0 top-0 w-1/2 h-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
             <span className="max-w-[200px] text-center">
               Panoramic view of Niagara Falls with rainbow and mist
@@ -104,7 +179,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 z-20">
           <AnimatedSection>
             <div className="max-w-2xl">
               <div className="flex items-center gap-1 mb-4">
@@ -136,18 +211,18 @@ export default function Home() {
                   href="https://wa.me/16479094565"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-niagara-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-niagara-dark transition-colors shadow-lg shadow-niagara-blue/25"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-niagara-blue to-niagara-dark text-white px-8 py-4 rounded-full text-lg font-semibold hover:shadow-xl hover:shadow-niagara-blue/25 transition-all"
                 >
                   <MessageCircle className="w-5 h-5" />
                   Book via WhatsApp
                 </a>
-                <a
-                  href="#tours"
+                <Link
+                  href="/tours/niagara-flagship"
                   className="inline-flex items-center justify-center gap-2 border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full text-lg font-semibold hover:border-niagara-blue hover:text-niagara-blue transition-colors"
                 >
                   View Tours
                   <ChevronRight className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
 
               <div className="mt-10 flex items-center gap-6 text-sm text-gray-500">
@@ -161,7 +236,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
-                  9-Hour Tour
+                  Full-Day Tours
                 </div>
               </div>
             </div>
@@ -204,113 +279,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tours Section */}
+      {/* Tour Packages */}
       <section id="tours" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Our Tour Packages
+                Choose Your Adventure
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Two premium experiences. One flat rate. Your private Mazda CX-90
-                and expert driver included.
+                Four unique experiences. Private Mazda CX-90 and expert driver
+                always included. Click any tour for full details.
               </p>
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <AnimatedSection delay={0}>
-              <div className="border-2 border-niagara-blue rounded-2xl overflow-hidden">
-                <div className="bg-niagara-blue text-white text-center py-2 text-sm font-semibold">
-                  Most Popular
-                </div>
-                <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400 text-sm px-4 text-center">
-                  Horseshoe Falls panoramic view with mist and rainbow
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Niagara Flagship
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    The complete Niagara experience. Floral Clock, Whirlpool
-                    Rapids, NOTL Wineries, and 3 hours at the Falls.
-                  </p>
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-4xl font-bold text-niagara-blue">
-                      $400
-                    </span>
-                    <span className="text-gray-500">flat rate / vehicle</span>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-niagara-blue" /> 9 hours
-                      door-to-door
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-niagara-blue" /> Up to 6
-                      guests
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-niagara-blue" /> 4+ stops
-                      along the route
-                    </li>
-                  </ul>
-                  <a
-                    href="#booking"
-                    className="block text-center bg-niagara-blue text-white py-3 rounded-full font-semibold hover:bg-niagara-dark transition-colors"
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {TOURS.map((tour, i) => {
+              const Icon = tour.icon;
+              return (
+                <AnimatedSection key={tour.id} delay={i * 0.1}>
+                  <Link
+                    href={`/tours/${tour.id}`}
+                    className="group block bg-white rounded-2xl border-2 border-gray-100 hover:border-niagara-blue/30 overflow-hidden hover:shadow-xl transition-all h-full"
                   >
-                    Build Your Experience
-                  </a>
-                </div>
-              </div>
-            </AnimatedSection>
+                    {/* Image */}
+                    <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm px-4 text-center relative overflow-hidden">
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${tour.gradient} opacity-10 group-hover:opacity-20 transition-opacity`}
+                      />
+                      <span className="relative z-10">{tour.image}</span>
+                      <div
+                        className={`absolute top-4 left-4 ${tour.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full`}
+                      >
+                        {tour.badge}
+                      </div>
+                    </div>
 
-            <AnimatedSection delay={0.15}>
-              <div className="border-2 border-gray-200 rounded-2xl overflow-hidden">
-                <div className="bg-gray-100 text-gray-600 text-center py-2 text-sm font-semibold">
-                  City Explorer
-                </div>
-                <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400 text-sm px-4 text-center">
-                  Toronto skyline with CN Tower from Toronto Islands
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                    Toronto Highlights
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    Discover Toronto&apos;s iconic landmarks. CN Tower,
-                    Distillery District, St. Lawrence Market, and more.
-                  </p>
-                  <div className="flex items-baseline gap-2 mb-6">
-                    <span className="text-4xl font-bold text-niagara-blue">
-                      $400
-                    </span>
-                    <span className="text-gray-500">flat rate / vehicle</span>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-600 mb-6">
-                    <li className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-niagara-blue" /> 5 hours
-                      door-to-door
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-niagara-blue" /> Up to 6
-                      guests
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-niagara-blue" /> 5+ city
-                      stops
-                    </li>
-                  </ul>
-                  <a
-                    href="#booking"
-                    className="block text-center border-2 border-niagara-blue text-niagara-blue py-3 rounded-full font-semibold hover:bg-niagara-blue hover:text-white transition-colors"
-                  >
-                    Build Your Experience
-                  </a>
-                </div>
-              </div>
-            </AnimatedSection>
+                    {/* Content */}
+                    <div className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tour.gradient} flex items-center justify-center shrink-0`}
+                        >
+                          <Icon className="w-6 h-6 text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-2">
+                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-niagara-blue transition-colors">
+                              {tour.name}
+                            </h3>
+                            <span className="text-xl font-bold text-niagara-blue whitespace-nowrap">
+                              {tour.price}
+                            </span>
+                          </div>
+                          <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                            {tour.description}
+                          </p>
+                          <div className="flex items-center gap-4 mt-4 text-xs text-gray-400">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3 h-3" /> {tour.duration}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Users className="w-3 h-3" /> Up to 6
+                            </span>
+                            <span className="flex items-center gap-1 ml-auto text-niagara-blue font-semibold">
+                              View Details
+                              <ChevronRight className="w-3 h-3" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -330,43 +374,50 @@ export default function Home() {
             </div>
           </AnimatedSection>
 
-          <div className="max-w-3xl mx-auto">
-            {ITINERARY.map((stop, i) => (
-              <AnimatedSection key={stop.title} delay={i * 0.08}>
-                <div className="flex gap-6 mb-8 last:mb-0">
-                  {/* Timeline */}
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-niagara-blue rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0">
-                      {i + 1}
+          <div className="max-w-3xl mx-auto space-y-4">
+            {ITINERARY.map((stop, i) => {
+              const Icon = stop.icon;
+              return (
+                <AnimatedSection key={stop.title} delay={i * 0.08}>
+                  <div className="flex gap-5">
+                    <div className="flex flex-col items-center">
+                      <div
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${stop.gradient} flex items-center justify-center text-white shrink-0 shadow-lg`}
+                      >
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      {i < ITINERARY.length - 1 && (
+                        <div className="w-0.5 flex-1 bg-gradient-to-b from-niagara-blue/30 to-transparent mt-2" />
+                      )}
                     </div>
-                    {i < ITINERARY.length - 1 && (
-                      <div className="w-0.5 h-full bg-niagara-blue/20 mt-2" />
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="bg-white rounded-2xl p-6 shadow-sm flex-1">
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1">
-                        <span className="text-sm font-semibold text-niagara-blue">
-                          {stop.time}
-                        </span>
-                        <h3 className="text-lg font-bold text-gray-900 mt-1">
-                          {stop.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm mt-2">
-                          {stop.description}
-                        </p>
-                      </div>
-                      <div className="sm:w-32 h-24 sm:h-auto bg-gray-200 rounded-lg flex items-center justify-center text-gray-400 text-xs px-2 text-center shrink-0">
-                        {stop.image}
-                      </div>
+                    <div className="bg-white rounded-2xl p-6 shadow-sm flex-1 mb-2">
+                      <span className="text-sm font-bold text-niagara-blue">
+                        {stop.time}
+                      </span>
+                      <h3 className="text-lg font-bold text-gray-900 mt-1">
+                        {stop.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mt-2 leading-relaxed">
+                        {stop.description}
+                      </p>
                     </div>
                   </div>
-                </div>
-              </AnimatedSection>
-            ))}
+                </AnimatedSection>
+              );
+            })}
           </div>
+
+          <AnimatedSection>
+            <div className="text-center mt-12">
+              <Link
+                href="/tours/niagara-flagship"
+                className="inline-flex items-center gap-2 text-niagara-blue font-semibold hover:underline"
+              >
+                See the full Niagara Flagship experience
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
@@ -380,7 +431,7 @@ export default function Home() {
               </h2>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 We pick you up and drop you off at your door. No meeting points.
-                Select your city below.
+                Select your city to learn more.
               </p>
             </div>
           </AnimatedSection>
@@ -390,9 +441,9 @@ export default function Home() {
               <AnimatedSection key={city} delay={i * 0.05}>
                 <Link
                   href={`/tours-from/${city.toLowerCase().replace(/ /g, "-")}`}
-                  className="flex items-center justify-center gap-2 bg-white border-2 border-gray-200 hover:border-niagara-blue text-gray-700 hover:text-niagara-blue py-4 px-3 rounded-xl font-medium text-sm transition-colors text-center"
+                  className="group flex items-center justify-center gap-2 bg-white border-2 border-gray-200 hover:border-niagara-blue text-gray-700 hover:text-niagara-blue py-4 px-3 rounded-xl font-medium text-sm transition-all hover:shadow-md text-center"
                 >
-                  <MapPin className="w-4 h-4 shrink-0" />
+                  <MapPin className="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform" />
                   {city}
                 </Link>
               </AnimatedSection>
@@ -401,27 +452,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Booking / Experience Builder */}
-      <section id="booking" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                Build Your Experience
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Customize your perfect tour in 4 easy steps. Get an instant
-                quote and book via WhatsApp.
-              </p>
-            </div>
-          </AnimatedSection>
-
-          <BookingFlow />
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-20 bg-niagara-blue">
+      <section className="py-20 bg-gradient-to-br from-niagara-blue via-blue-600 to-cyan-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
@@ -431,16 +463,25 @@ export default function Home() {
               Skip the crowded tour buses. Book your private luxury tour today
               and experience Niagara the way it was meant to be seen.
             </p>
-            <a
-              href="https://wa.me/16479094565"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white text-niagara-blue px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg"
-            >
-              <MessageCircle className="w-6 h-6" />
-              Book Now via WhatsApp
-            </a>
-            <p className="text-white/60 text-sm mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://wa.me/16479094565"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-white text-niagara-blue px-10 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <MessageCircle className="w-6 h-6" />
+                Book Now via WhatsApp
+              </a>
+              <Link
+                href="/tours/custom-private"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-white/10 transition-colors"
+              >
+                Design a Custom Tour
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+            </div>
+            <p className="text-white/60 text-sm mt-6">
               Or call us: +1 (647) 909-4565
             </p>
           </AnimatedSection>

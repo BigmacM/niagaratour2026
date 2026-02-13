@@ -9,9 +9,17 @@ import {
   Star,
   MessageCircle,
   ChevronRight,
+  Flower2,
+  Waves,
+  Wine,
+  Mountain,
+  Camera,
+  Heart,
+  Compass,
 } from "lucide-react";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { CityTourSchema } from "@/components/TourSchema";
+import { InlineBookingCTA } from "@/components/InlineBookingCTA";
 
 const CITY_DATA: Record<
   string,
@@ -79,6 +87,15 @@ const CITY_DATA: Record<
   },
 };
 
+const ITINERARY_STEPS = [
+  { icon: Car, gradient: "from-sky-400 to-blue-500", label: "GTA Pickup" },
+  { icon: Flower2, gradient: "from-green-400 to-emerald-500", label: "Floral Clock" },
+  { icon: Waves, gradient: "from-cyan-400 to-teal-500", label: "Whirlpool Rapids" },
+  { icon: Wine, gradient: "from-purple-400 to-violet-500", label: "NOTL Winery Visit" },
+  { icon: Mountain, gradient: "from-blue-500 to-indigo-600", label: "3 Hours at the Falls" },
+  { icon: Camera, gradient: "from-orange-400 to-rose-500", label: "Return Journey" },
+];
+
 export async function generateStaticParams() {
   return Object.keys(CITY_DATA).map((city) => ({ city }));
 }
@@ -122,69 +139,66 @@ export default function CityTourPage({
       <CityTourSchema city={data.name} />
 
       {/* Hero */}
-      <section className="relative py-20 sm:py-28">
-        <div className="absolute inset-0 bg-gradient-to-br from-niagara-blue/5 via-white to-sunset-gold/10" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-niagara-blue via-blue-600 to-cyan-500" />
+        <div className="absolute inset-0 bg-[url('/images/hero/niagara-hero.jpg')] bg-cover bg-center opacity-15" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
           <AnimatedSection>
             <div className="max-w-3xl">
-              <div className="flex items-center gap-2 mb-4">
-                <MapPin className="w-5 h-5 text-niagara-blue" />
-                <span className="text-sm font-semibold text-niagara-blue uppercase tracking-wide">
-                  Door-to-door from {data.name}
-                </span>
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <MapPin className="w-4 h-4" />
+                Door-to-door from {data.name}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
                 Premium Private Niagara Falls Tour from{" "}
-                <span className="text-niagara-blue">{data.name}</span>
+                <span className="text-sunset-gold">{data.name}</span>
               </h1>
 
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <p className="text-lg text-white/90 leading-relaxed mb-4">
                 Skip the crowded buses. We provide exclusive door-to-door pickup
                 from any address in {data.name}. Enjoy the {data.driveTime}{" "}
                 scenic drive to Niagara in our flagship Mazda CX-90.
               </p>
 
-              <p className="text-gray-600 mb-8">{data.highlights}</p>
+              <p className="text-white/75 mb-8">{data.highlights}</p>
 
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <a
-                  href={`https://wa.me/16479094565?text=${whatsappMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-niagara-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-niagara-dark transition-colors shadow-lg shadow-niagara-blue/25"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  Book your {data.name} pickup via WhatsApp
-                </a>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap gap-4 mb-8">
+                <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
                   <Clock className="w-4 h-4" />
                   {data.driveTime} to Niagara
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
                   <Car className="w-4 h-4" />
                   Mazda CX-90
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
                   <Users className="w-4 h-4" />
                   1-6 Guests
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 bg-white/15 backdrop-blur-sm px-4 py-2 rounded-full">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-4 h-4 fill-sunset-gold text-sunset-gold"
+                      className="w-3.5 h-3.5 fill-sunset-gold text-sunset-gold"
                     />
                   ))}
                 </div>
+              </div>
+
+              <div className="flex items-baseline gap-3">
+                <span className="text-5xl font-bold text-white">$400</span>
+                <span className="text-white/70 text-lg">flat rate / vehicle</span>
               </div>
             </div>
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Inline CTA */}
+      <InlineBookingCTA />
 
       {/* What's Included */}
       <section className="py-16 bg-gray-50">
@@ -200,26 +214,26 @@ export default function CityTourPage({
               {
                 icon: MapPin,
                 title: "Door-to-Door Pickup",
-                desc: `We come to your address in ${data.name}. No meeting points.`,
+                desc: `We come to your address in ${data.name}. No meeting points, no transit.`,
               },
               {
                 icon: Car,
                 title: "Luxury Mazda CX-90",
-                desc: "Premium leather, panoramic roof, and plenty of space.",
+                desc: "Premium leather, panoramic sunroof, and room for up to 6.",
               },
               {
                 icon: Clock,
                 title: "9-Hour Tour",
-                desc: "Full day including Floral Clock, Wineries, and the Falls.",
+                desc: "Full day: Floral Clock, Wineries, Whirlpool, and the Falls.",
               },
               {
                 icon: Users,
                 title: "$400 Flat Rate",
-                desc: "One price for the vehicle. Split it among up to 6 guests.",
+                desc: "One price for the vehicle. Split it among your group.",
               },
             ].map((item, i) => (
               <AnimatedSection key={item.title} delay={i * 0.1}>
-                <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
+                <div className="bg-white rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-shadow h-full">
                   <div className="w-12 h-12 bg-niagara-blue/10 rounded-xl flex items-center justify-center mx-auto mb-4">
                     <item.icon className="w-6 h-6 text-niagara-blue" />
                   </div>
@@ -234,16 +248,16 @@ export default function CityTourPage({
         </div>
       </section>
 
-      {/* Itinerary Preview */}
+      {/* Itinerary */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-10 text-center">
               Your Niagara Day from {data.name}
             </h2>
           </AnimatedSection>
 
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl mx-auto space-y-4">
             {[
               `Pickup from your ${data.name} address`,
               `${data.driveTime} scenic drive in the Mazda CX-90`,
@@ -251,23 +265,123 @@ export default function CityTourPage({
               "Whirlpool Rapids overlook",
               "Niagara-on-the-Lake winery visit",
               "3 hours exploring Niagara Falls",
-              `Return drive to ${data.name}`,
-            ].map((item, i) => (
-              <AnimatedSection key={item} delay={i * 0.06}>
-                <div className="flex items-center gap-4 py-3 border-b border-gray-100 last:border-0">
-                  <div className="w-8 h-8 bg-niagara-blue rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0">
-                    {i + 1}
+              `Scenic return drive to ${data.name}`,
+            ].map((item, i) => {
+              const stepData = ITINERARY_STEPS[Math.min(i, ITINERARY_STEPS.length - 1)];
+              const Icon = stepData.icon;
+              return (
+                <AnimatedSection key={item} delay={i * 0.06}>
+                  <div className="flex gap-4">
+                    <div className="flex flex-col items-center">
+                      <div
+                        className={`w-10 h-10 rounded-xl bg-gradient-to-br ${stepData.gradient} flex items-center justify-center text-white shrink-0 shadow-md`}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </div>
+                      {i < 6 && (
+                        <div className="w-0.5 flex-1 bg-gradient-to-b from-niagara-blue/20 to-transparent mt-1" />
+                      )}
+                    </div>
+                    <div className="bg-white rounded-xl p-4 shadow-sm flex-1 mb-1 border border-gray-50 hover:shadow-md transition-shadow">
+                      <div className="flex items-center gap-3">
+                        <span className="w-6 h-6 bg-niagara-blue/10 rounded-full flex items-center justify-center text-xs font-bold text-niagara-blue shrink-0">
+                          {i + 1}
+                        </span>
+                        <span className="text-gray-800 font-medium">{item}</span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="text-gray-700">{item}</span>
-                </div>
-              </AnimatedSection>
-            ))}
+                </AnimatedSection>
+              );
+            })}
+          </div>
+
+          <AnimatedSection>
+            <div className="text-center mt-10">
+              <Link
+                href="/tours/niagara-flagship"
+                className="inline-flex items-center gap-2 text-niagara-blue font-semibold hover:underline"
+              >
+                See the full Niagara Flagship experience
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Available Tours */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 text-center">
+              Tours Available from {data.name}
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+            {[
+              {
+                href: "/tours/niagara-flagship",
+                name: "Niagara Flagship",
+                price: "$400",
+                duration: "9 hrs",
+                icon: Waves,
+                gradient: "from-blue-500 to-cyan-400",
+              },
+              {
+                href: "/tours/toronto-highlights",
+                name: "Toronto Highlights",
+                price: "$400",
+                duration: "5 hrs",
+                icon: Camera,
+                gradient: "from-slate-500 to-gray-400",
+              },
+              {
+                href: "/tours/couples-spa",
+                name: "Couples Spa",
+                price: "$550",
+                duration: "10 hrs",
+                icon: Heart,
+                gradient: "from-rose-500 to-pink-400",
+              },
+              {
+                href: "/tours/custom-private",
+                name: "Custom Tour",
+                price: "$400+",
+                duration: "Flexible",
+                icon: Compass,
+                gradient: "from-amber-500 to-orange-400",
+              },
+            ].map((tour, i) => {
+              const Icon = tour.icon;
+              return (
+                <AnimatedSection key={tour.href} delay={i * 0.1}>
+                  <Link
+                    href={tour.href}
+                    className="group block bg-white rounded-2xl p-5 border border-gray-100 hover:border-niagara-blue/30 hover:shadow-lg transition-all text-center h-full"
+                  >
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tour.gradient} flex items-center justify-center mx-auto mb-3`}
+                    >
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-bold text-gray-900 group-hover:text-niagara-blue transition-colors">
+                      {tour.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {tour.duration} &middot; {tour.price}
+                    </p>
+                  </Link>
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-niagara-blue">
+      <section className="py-16 bg-gradient-to-br from-niagara-blue via-blue-600 to-cyan-600">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
@@ -305,7 +419,7 @@ export default function CityTourPage({
                 <Link
                   key={slug}
                   href={`/tours-from/${slug}`}
-                  className="inline-flex items-center gap-1 border border-gray-200 hover:border-niagara-blue text-gray-600 hover:text-niagara-blue px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                  className="inline-flex items-center gap-1 border-2 border-gray-200 hover:border-niagara-blue text-gray-600 hover:text-niagara-blue px-4 py-2 rounded-full text-sm font-medium transition-colors"
                 >
                   <MapPin className="w-3 h-3" />
                   {d.name}

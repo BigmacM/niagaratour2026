@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ServiceAreaSchema } from "@/components/TourSchema";
-import { StickyBookButton } from "@/components/StickyBookButton";
+import { FloatingCTA } from "@/components/FloatingCTA";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -69,7 +69,7 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
-        <StickyBookButton />
+        <FloatingCTA />
       </body>
     </html>
   );

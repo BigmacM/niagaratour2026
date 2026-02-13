@@ -6,11 +6,18 @@ const CITIES = [
   "Burlington", "Vaughan", "Markham", "Richmond Hill", "Scarborough",
 ];
 
+const TOURS = [
+  { href: "/tours/niagara-flagship", label: "Niagara Flagship Tour" },
+  { href: "/tours/toronto-highlights", label: "Toronto Highlights Tour" },
+  { href: "/tours/couples-spa", label: "Couples Spa & Falls" },
+  { href: "/tours/custom-private", label: "Custom Private Tour" },
+];
+
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -46,6 +53,22 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Tours */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Our Tours</h3>
+            <div className="space-y-2 text-sm">
+              {TOURS.map((tour) => (
+                <Link
+                  key={tour.href}
+                  href={tour.href}
+                  className="block hover:text-niagara-blue transition-colors"
+                >
+                  {tour.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
           {/* Service Areas */}
           <div>
             <h3 className="text-white font-semibold mb-4">
@@ -72,16 +95,13 @@ export function Footer() {
                 Home
               </Link>
               <Link href="/#tours" className="block hover:text-niagara-blue">
-                Our Tours
+                Tour Packages
               </Link>
               <Link
                 href="/#itinerary"
                 className="block hover:text-niagara-blue"
               >
                 Itinerary
-              </Link>
-              <Link href="/#booking" className="block hover:text-niagara-blue">
-                Book Now
               </Link>
               <a
                 href="https://wa.me/16479094565"
