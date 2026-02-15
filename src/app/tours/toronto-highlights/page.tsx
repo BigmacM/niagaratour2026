@@ -199,6 +199,76 @@ export default function TorontoHighlightsPage() {
         </div>
       </section>
 
+      {/* Add-on Attractions */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Add an Attraction
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Extend your Toronto day with one of these iconic experiences. We
+                handle the logistics — just enjoy.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                name: "CN Tower",
+                price: "$45/person",
+                image: "CN Tower observation deck with Glass Floor and city panorama",
+                desc: "Skip-the-line access to the observation deck, Glass Floor, and outdoor SkyTerrace.",
+                gradient: "from-slate-500 to-gray-600",
+              },
+              {
+                name: "Ripley's Aquarium",
+                price: "$40/person",
+                image: "Underwater tunnel at Ripley's Aquarium with sharks and rays",
+                desc: "Walk through the stunning underwater tunnel and explore 20,000+ marine animals.",
+                gradient: "from-blue-500 to-cyan-500",
+              },
+              {
+                name: "Canada's Wonderland",
+                price: "$55/person",
+                image: "Leviathan roller coaster at Canada's Wonderland",
+                desc: "Canada's premier amusement park with 200+ attractions, thrill rides, and a waterpark.",
+                gradient: "from-red-500 to-orange-500",
+              },
+              {
+                name: "Toronto Zoo",
+                price: "$30/person",
+                image: "Giant panda exhibit at the Toronto Zoo",
+                desc: "Canada's largest zoo with 5,000+ animals across 10 km of trails. Great for families.",
+                gradient: "from-green-500 to-emerald-500",
+              },
+            ].map((addon, i) => (
+              <AnimatedSection key={addon.name} delay={i * 0.1}>
+                <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
+                  <div className={`h-36 bg-gradient-to-br ${addon.gradient} bg-opacity-10 flex items-center justify-center text-gray-400 text-xs px-3 text-center relative`}>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${addon.gradient} opacity-10`} />
+                    <span className="relative z-10">{addon.image}</span>
+                  </div>
+                  <div className="p-5 flex-1 flex flex-col">
+                    <h3 className="font-bold text-gray-900 mb-1">
+                      {addon.name}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-3 flex-1">
+                      {addon.desc}
+                    </p>
+                    <span className="text-sm font-bold text-niagara-blue">
+                      {addon.price}
+                    </span>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 bg-gradient-to-br from-slate-700 via-gray-700 to-slate-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

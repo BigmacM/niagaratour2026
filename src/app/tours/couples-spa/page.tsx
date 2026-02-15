@@ -172,7 +172,7 @@ export default function CouplesSpaPage() {
                 </div>
                 <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
                   <Users className="w-4 h-4" />
-                  2-4 Guests
+                  2 Guests
                 </div>
                 <div className="flex items-center gap-2 bg-white/15 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
                   <Flower2 className="w-4 h-4" />

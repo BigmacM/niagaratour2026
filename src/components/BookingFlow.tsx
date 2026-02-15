@@ -73,7 +73,7 @@ const TOURS = [
 ];
 
 const ADDONS: Record<string, Array<{ id: string; name: string; price: number; unit: string; description: string }>> = {
-  default: [
+  niagara: [
     {
       id: "maid",
       name: "Maid of the Mist",
@@ -101,6 +101,36 @@ const ADDONS: Record<string, Array<{ id: string; name: string; price: number; un
       price: 25,
       unit: "per person",
       description: "Guided tasting at a premium NOTL estate winery.",
+    },
+  ],
+  toronto: [
+    {
+      id: "cn-tower",
+      name: "CN Tower Admission",
+      price: 45,
+      unit: "per person",
+      description: "Skip-the-line access to the observation deck and Glass Floor.",
+    },
+    {
+      id: "ripleys",
+      name: "Ripley's Aquarium",
+      price: 40,
+      unit: "per person",
+      description: "Walk through the underwater tunnel and explore 20,000+ marine animals.",
+    },
+    {
+      id: "wonderland",
+      name: "Canada's Wonderland",
+      price: 55,
+      unit: "per person",
+      description: "Full-day access to Canada's premier amusement park with 200+ attractions.",
+    },
+    {
+      id: "zoo",
+      name: "Toronto Zoo",
+      price: 30,
+      unit: "per person",
+      description: "Explore 5,000+ animals across 10 km of trails at Canada's largest zoo.",
     },
   ],
   "couples-spa": [
@@ -169,12 +199,18 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
   }, [preselectedTour, preselectedCity]);
 
   const selectedTour = TOURS.find((t) => t.id === tour);
-  const currentAddons = tour === "couples-spa" ? ADDONS["couples-spa"] : ADDONS["default"];
+  const maxGuests = tour === "couples-spa" ? 2 : 6;
+  const currentAddons =
+    tour === "couples-spa"
+      ? ADDONS["couples-spa"]
+      : tour === "toronto"
+        ? ADDONS["toronto"]
+        : ADDONS["niagara"];
 
   const total = useMemo(() => {
     const base = selectedTour?.price ?? 0;
     const addonTotal = addons.reduce((sum, id) => {
-      const allAddons = [...ADDONS["default"], ...ADDONS["couples-spa"]];
+      const allAddons = [...ADDONS["niagara"], ...ADDONS["toronto"], ...ADDONS["couples-spa"]];
       const addon = allAddons.find((a) => a.id === id);
       if (!addon) return sum;
       const multiplier = addon.unit === "per couple" || addon.unit === "per arrangement" ? 1 : guests;
@@ -313,6 +349,7 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
                         onClick={() => {
                           setTour(t.id);
                           setAddons([]);
+                          if (t.id === "couples-spa" && guests > 2) setGuests(2);
                         }}
                         className={`w-full text-left p-4 rounded-xl border-2 transition-all ${
                           tour === t.id
@@ -343,7 +380,7 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
                                 <Clock className="w-3 h-3" /> {t.duration}
                               </span>
                               <span className="flex items-center gap-1">
-                                <Users className="w-3 h-3" /> Up to 6
+                                <Users className="w-3 h-3" /> {t.id === "couples-spa" ? "Up to 2" : "Up to 6"}
                               </span>
                             </div>
                           </div>
@@ -383,7 +420,7 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
                       {guests}
                     </span>
                     <button
-                      onClick={() => setGuests((g) => Math.min(6, g + 1))}
+                      onClick={() => setGuests((g) => Math.min(maxGuests, g + 1))}
                       className="w-10 h-10 rounded-full border-2 border-gray-200 bg-white flex items-center justify-center text-lg font-bold text-gray-600 hover:border-niagara-blue transition-colors"
                     >
                       +
@@ -495,7 +532,7 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
                         Add-ons
                       </span>
                       {addons.map((id) => {
-                        const allAddons = [...ADDONS["default"], ...ADDONS["couples-spa"]];
+                        const allAddons = [...ADDONS["niagara"], ...ADDONS["toronto"], ...ADDONS["couples-spa"]];
                         const addon = allAddons.find((a) => a.id === id);
                         if (!addon) return null;
                         const multiplier =
