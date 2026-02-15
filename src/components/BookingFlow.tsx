@@ -221,7 +221,7 @@ export function BookingFlow({ preselectedTour, preselectedCity }: BookingFlowPro
 
   const whatsappMessage = useMemo(() => {
     const tourName = selectedTour?.name ?? "";
-    const allAddons = [...ADDONS["default"], ...ADDONS["couples-spa"]];
+    const allAddons = [...ADDONS["niagara"], ...ADDONS["toronto"], ...ADDONS["couples-spa"]];
     const addonNames = addons
       .map((id) => allAddons.find((a) => a.id === id)?.name)
       .filter(Boolean)
