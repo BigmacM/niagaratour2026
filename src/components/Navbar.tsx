@@ -9,6 +9,7 @@ const TOUR_LINKS = [
   { href: "/tours/toronto-highlights", label: "Toronto Highlights" },
   { href: "/tours/couples-spa", label: "Couples Spa & Falls" },
   { href: "/tours/custom-private", label: "Custom Private Tour" },
+  { href: "/tours/world-cup-niagara", label: "World Cup 2026 Special" },
 ];
 
 const NAV_LINKS = [

@@ -20,34 +20,47 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: {
     default:
-      "GoTourNiagara | Private Luxury SUV Tours to Niagara Falls from the GTA",
+      "Private Niagara Falls Tours from Toronto | GoTourNiagara — From $400",
     template: "%s | GoTourNiagara",
   },
   description:
-    "Book a private luxury Mazda CX-90 SUV tour from Toronto, Mississauga, Brampton & the GTA to Niagara Falls. Door-to-door pickup for groups of 1-6. From $400 flat rate.",
+    "Private luxury SUV tours from Toronto to Niagara Falls. Door-to-door pickup in our Mazda CX-90 for 1-6 guests. Wineries, Falls, and more. From $400 flat rate. Rated 5 stars.",
   keywords: [
     "private Niagara tour",
     "Niagara Falls tour from Toronto",
     "luxury SUV tour Niagara",
     "private tour Niagara Falls",
     "GTA Niagara tour",
-    "Mazda CX-90 tour",
     "Niagara Falls private driver",
+    "Niagara Falls day trip from Toronto",
+    "private Niagara Falls tour",
+    "Niagara-on-the-Lake wine tour",
+    "FIFA World Cup 2026 Niagara tour",
+    "Toronto to Niagara Falls private tour",
   ],
   openGraph: {
-    title: "GoTourNiagara | Private Luxury SUV Tours to Niagara Falls",
+    title: "Private Niagara Falls Tours from $400 | GoTourNiagara",
     description:
-      "Skip the crowded buses. Private Mazda CX-90 tours from the GTA to Niagara Falls for 1-6 guests. From $400.",
+      "Skip the crowded buses. Private Mazda CX-90 tours from the GTA to Niagara Falls for 1-6 guests. Rated 5 stars. From $400.",
     url: "https://gotourniagara.com",
     siteName: "GoTourNiagara",
     locale: "en_CA",
     type: "website",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1512351735230-a07ebdf5b5e1?w=1200&q=80",
+        width: 1200,
+        height: 630,
+        alt: "Niagara Falls Horseshoe Falls panoramic view",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GoTourNiagara | Private Luxury Niagara Tours",
+    title: "Private Niagara Falls Tours from $400 | GoTourNiagara",
     description:
-      "Private Mazda CX-90 tours from the GTA to Niagara Falls. From $400 flat rate.",
+      "Private Mazda CX-90 tours from the GTA to Niagara Falls. Rated 5 stars. From $400 flat rate.",
+    images: ["https://images.unsplash.com/photo-1512351735230-a07ebdf5b5e1?w=1200&q=80"],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://gotourniagara.com" },

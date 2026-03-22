@@ -14,8 +14,13 @@ import {
   Wine,
   Mountain,
   Camera,
+  Trophy,
+  Calendar,
+  Ticket,
+  Quote,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatedSection } from "@/components/AnimatedSection";
 
 const FEATURES = [
@@ -57,7 +62,8 @@ const TOURS = [
     gradient: "from-blue-500 to-cyan-400",
     badge: "Most Popular",
     badgeColor: "bg-niagara-blue",
-    image: "Horseshoe Falls panoramic with mist, rainbow, and blue skies",
+    image: "https://images.unsplash.com/photo-1512351735230-a07ebdf5b5e1?w=800&q=80",
+    imageAlt: "Horseshoe Falls panoramic with mist and blue skies",
   },
   {
     id: "toronto-highlights",
@@ -70,7 +76,8 @@ const TOURS = [
     gradient: "from-slate-600 to-gray-400",
     badge: "City Explorer",
     badgeColor: "bg-gray-600",
-    image: "Toronto skyline with CN Tower from the Toronto Islands",
+    image: "https://images.unsplash.com/photo-1744639375478-11bcbf343426?w=800&q=80",
+    imageAlt: "Toronto skyline featuring the CN Tower",
   },
   {
     id: "couples-spa",
@@ -83,7 +90,8 @@ const TOURS = [
     gradient: "from-rose-500 to-pink-400",
     badge: "Romantic",
     badgeColor: "bg-rose-500",
-    image: "Romantic couples spa setting with candles, flowers, and champagne",
+    image: "https://images.unsplash.com/photo-1463695970743-ae65cca05743?w=800&q=80",
+    imageAlt: "Niagara Falls Canada scenic view",
   },
   {
     id: "custom-private",
@@ -96,7 +104,53 @@ const TOURS = [
     gradient: "from-amber-500 to-orange-400",
     badge: "Your Rules",
     badgeColor: "bg-amber-500",
-    image: "Luxury SUV on a scenic Niagara Escarpment road at golden hour",
+    image: "https://images.unsplash.com/photo-1758025550252-2eb870da49cc?w=800&q=80",
+    imageAlt: "Luxury black SUV for private tours",
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    name: "Sarah M.",
+    location: "Toronto",
+    text: "Absolutely incredible day! Our driver knew every hidden gem. The winery stop was a highlight. Worth every penny for a private experience.",
+    rating: 5,
+    tour: "Niagara Flagship",
+  },
+  {
+    name: "James & Linda K.",
+    location: "Mississauga",
+    text: "We booked the Couples Spa tour for our anniversary. The champagne, the spa, the Falls at sunset — it was pure magic. Thank you GoTourNiagara!",
+    rating: 5,
+    tour: "Couples Spa & Falls",
+  },
+  {
+    name: "David R.",
+    location: "Brampton",
+    text: "Family of 5 and we had the best day. Kids loved the Falls, I loved the winery. Door-to-door from Brampton made it so easy.",
+    rating: 5,
+    tour: "Niagara Flagship",
+  },
+  {
+    name: "Maria T.",
+    location: "Vaughan",
+    text: "Third time booking with GoTourNiagara. Every time they exceed expectations. The Mazda CX-90 is incredibly comfortable for a full day trip.",
+    rating: 5,
+    tour: "Custom Private Tour",
+  },
+  {
+    name: "Chen W.",
+    location: "Markham",
+    text: "Visiting from overseas and wanted to see Toronto AND Niagara. They created a custom 2-day itinerary that was perfect. Highly recommend!",
+    rating: 5,
+    tour: "Custom Private Tour",
+  },
+  {
+    name: "Priya S.",
+    location: "Scarborough",
+    text: "The Toronto Highlights tour was the best way to show my parents around the city. Private, comfortable, and our driver was so knowledgeable.",
+    rating: 5,
+    tour: "Toronto Highlights",
   },
 ];
 
@@ -172,10 +226,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-niagara-blue/5 via-white to-cyan-50" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/30 z-10" />
-          <div className="absolute right-0 top-0 w-1/2 h-full bg-gray-200 flex items-center justify-center text-gray-400 text-sm">
-            <span className="max-w-[200px] text-center">
-              Panoramic view of Niagara Falls with rainbow and mist
-            </span>
+          <div className="absolute right-0 top-0 w-1/2 h-full">
+            <Image
+              src="https://images.unsplash.com/photo-1512351735230-a07ebdf5b5e1?w=1200&q=80"
+              alt="Panoramic view of Horseshoe Falls at Niagara Falls"
+              fill
+              className="object-cover"
+              priority
+              sizes="50vw"
+            />
           </div>
         </div>
 
@@ -304,13 +363,16 @@ export default function Home() {
                     className="group block bg-white rounded-2xl border-2 border-gray-100 hover:border-niagara-blue/30 overflow-hidden hover:shadow-xl transition-all h-full"
                   >
                     {/* Image */}
-                    <div className="h-48 bg-gray-100 flex items-center justify-center text-gray-400 text-sm px-4 text-center relative overflow-hidden">
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${tour.gradient} opacity-10 group-hover:opacity-20 transition-opacity`}
+                    <div className="h-48 relative overflow-hidden">
+                      <Image
+                        src={tour.image}
+                        alt={tour.imageAlt}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                      <span className="relative z-10">{tour.image}</span>
                       <div
-                        className={`absolute top-4 left-4 ${tour.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full`}
+                        className={`absolute top-4 left-4 ${tour.badgeColor} text-white text-xs font-bold px-3 py-1 rounded-full z-10`}
                       >
                         {tour.badge}
                       </div>
@@ -449,6 +511,133 @@ export default function Home() {
               </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                What Our Guests Say
+              </h2>
+              <div className="flex items-center justify-center gap-2 mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-6 h-6 fill-sunset-gold text-sunset-gold"
+                  />
+                ))}
+              </div>
+              <p className="text-lg text-gray-600">
+                5.0 average from 47+ verified reviews
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {TESTIMONIALS.map((testimonial, i) => (
+              <AnimatedSection key={testimonial.name} delay={i * 0.08}>
+                <div className="bg-gray-50 rounded-2xl p-6 h-full flex flex-col">
+                  <Quote className="w-8 h-8 text-niagara-blue/20 mb-3" />
+                  <p className="text-gray-700 leading-relaxed flex-1 mb-4">
+                    &ldquo;{testimonial.text}&rdquo;
+                  </p>
+                  <div className="border-t border-gray-200 pt-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-semibold text-gray-900 text-sm">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          {testimonial.location} &middot; {testimonial.tour}
+                        </p>
+                      </div>
+                      <div className="flex gap-0.5">
+                        {[...Array(testimonial.rating)].map((_, j) => (
+                          <Star
+                            key={j}
+                            className="w-3.5 h-3.5 fill-sunset-gold text-sunset-gold"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FIFA World Cup 2026 */}
+      <section className="py-20 bg-gradient-to-br from-emerald-900 via-green-800 to-emerald-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,255,255,0.1),transparent_50%)]" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <Trophy className="w-4 h-4 text-sunset-gold" />
+                FIFA World Cup 2026 in Toronto
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                Visiting Toronto for the World Cup?
+              </h2>
+              <p className="text-lg text-white/80 max-w-2xl mx-auto">
+                Toronto hosts 6 FIFA World Cup matches June-July 2026. Make the most
+                of your trip with a private Niagara Falls day tour between match days.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+            <AnimatedSection delay={0}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
+                <Calendar className="w-8 h-8 text-sunset-gold mx-auto mb-3" />
+                <h3 className="text-white font-bold mb-1">6 Matches in Toronto</h3>
+                <p className="text-white/70 text-sm">
+                  June 12 - July 2, 2026. Including Canada&apos;s historic opener.
+                </p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.1}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
+                <Ticket className="w-8 h-8 text-sunset-gold mx-auto mb-3" />
+                <h3 className="text-white font-bold mb-1">Match Day Flexibility</h3>
+                <p className="text-white/70 text-sm">
+                  Morning tour, afternoon match. Or tour the day before — we fit your schedule.
+                </p>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/10">
+                <MapPin className="w-8 h-8 text-sunset-gold mx-auto mb-3" />
+                <h3 className="text-white font-bold mb-1">Hotel Pickup</h3>
+                <p className="text-white/70 text-sm">
+                  We pick you up from any Toronto hotel. Door-to-door in our luxury SUV.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection>
+            <div className="text-center">
+              <Link
+                href="/tours/world-cup-niagara"
+                className="inline-flex items-center gap-2 bg-white text-emerald-800 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-colors shadow-lg"
+              >
+                <Trophy className="w-5 h-5" />
+                World Cup Niagara Tour
+                <ChevronRight className="w-5 h-5" />
+              </Link>
+              <p className="text-white/50 text-sm mt-4">
+                Special packages for World Cup visitors. From $400 flat rate.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
