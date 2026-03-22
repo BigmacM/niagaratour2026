@@ -571,6 +571,73 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Everything you need to know about our private tours.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="max-w-3xl mx-auto space-y-4">
+            {[
+              {
+                q: "How many people can fit in the vehicle?",
+                a: "Our Mazda CX-90 comfortably fits up to 6 guests plus the driver. It features premium leather seating, a panoramic sunroof, and plenty of legroom for a full-day tour.",
+              },
+              {
+                q: "Where do you pick up from?",
+                a: "We pick up from any address in the Greater Toronto Area — your home, hotel, Airbnb, or office. No meeting points. We come to your door.",
+              },
+              {
+                q: "What's included in the $400 flat rate?",
+                a: "The flat rate covers the private vehicle, your expert driver/guide for the full day, door-to-door service, bottled water, phone chargers, and a curated playlist. Attraction tickets and meals are separate.",
+              },
+              {
+                q: "Can I customize the itinerary?",
+                a: "Absolutely. Every tour is flexible. Want to spend more time at the wineries and skip the Floral Clock? No problem. Just tell your driver. You can also build a fully custom tour from scratch.",
+              },
+              {
+                q: "How far in advance should I book?",
+                a: "We recommend booking at least 48 hours in advance. For summer weekends and World Cup dates (June-July 2026), book at least a week ahead to guarantee availability.",
+              },
+              {
+                q: "What is your cancellation policy?",
+                a: "Free cancellation up to 24 hours before your tour. Cancellations within 24 hours are subject to a 50% fee. Full refund for weather-related cancellations.",
+              },
+              {
+                q: "Do you offer tours in languages other than English?",
+                a: "Yes! We have drivers who speak French, Mandarin, Cantonese, Hindi, and Punjabi. Let us know your preference when booking and we'll match you with the right guide.",
+              },
+              {
+                q: "Is the tour suitable for children or elderly guests?",
+                a: "Yes. Our SUV has child seat anchors (we can provide car seats on request), and all our stops are accessible. The pace is entirely up to you — we go at your speed.",
+              },
+            ].map((faq, i) => (
+              <AnimatedSection key={i} delay={i * 0.05}>
+                <details className="group bg-white rounded-2xl border border-gray-100 overflow-hidden">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors">
+                    <h3 className="font-semibold text-gray-900 text-left pr-4">
+                      {faq.q}
+                    </h3>
+                    <ChevronRight className="w-5 h-5 text-gray-400 shrink-0 transition-transform group-open:rotate-90" />
+                  </summary>
+                  <div className="px-6 pb-6 -mt-2">
+                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                  </div>
+                </details>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* FIFA World Cup 2026 */}
       <section className="py-20 bg-gradient-to-br from-emerald-900 via-green-800 to-emerald-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">

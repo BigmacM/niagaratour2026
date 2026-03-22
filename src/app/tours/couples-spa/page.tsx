@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Clock,
   Users,
@@ -81,7 +82,8 @@ const SPAS = [
     description:
       "A tranquil oasis in the heart of Niagara-on-the-Lake. Award-winning couples treatments with hot spring-inspired pools, relaxation lounges, and eucalyptus steam rooms.",
     highlight: "Famous for their Couples Harmony Massage",
-    image: "Serene spa treatment room with candles and hot stone setup",
+    imageUrl: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+    imageAlt: "Luxury spa treatment room with candles",
   },
   {
     name: "Spa on the Twenty",
@@ -89,7 +91,8 @@ const SPAS = [
     description:
       "Nestled in the Twenty Valley wine region. Features organic products, vineyard views from treatment rooms, and a private couples suite with soaking tub.",
     highlight: "Known for their Vinotherapy wine-infused treatments",
-    image: "Spa treatment room overlooking Jordan vineyards",
+    imageUrl: "https://images.unsplash.com/photo-1540555700478-4be289fbec6d?w=600&q=80",
+    imageAlt: "Spa relaxation area with vineyard views",
   },
   {
     name: "Christienne Fallsview Spa",
@@ -97,7 +100,8 @@ const SPAS = [
     description:
       "A luxurious spa overlooking the Falls. Enjoy couples massages with the sound of thundering water as your soundtrack.",
     highlight: "Unmatched views of both the American and Horseshoe Falls",
-    image: "Spa lounge with panoramic Niagara Falls view through floor-to-ceiling windows",
+    imageUrl: "https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=600&q=80",
+    imageAlt: "Luxury spa lounge with scenic views",
   },
 ];
 
@@ -109,7 +113,8 @@ const RESTAURANTS = [
     price: "$$$$",
     description:
       "An intimate, candlelit dining room with a hyper-local menu that changes with the seasons. Their tasting menu with wine pairings is legendary among couples.",
-    image: "Elegant candlelit dining table with wine glasses at AG Restaurant",
+    imageUrl: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=500&q=80",
+    imageAlt: "Elegant candlelit fine dining table",
   },
   {
     name: "Treadwell Cuisine",
@@ -118,7 +123,8 @@ const RESTAURANTS = [
     price: "$$$",
     description:
       "Farm-to-table pioneer in Niagara wine country. A romantic courtyard setting with an award-winning wine list featuring exclusively Niagara wines.",
-    image: "Courtyard dining at Treadwell with string lights and vineyard atmosphere",
+    imageUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=500&q=80",
+    imageAlt: "Romantic courtyard restaurant with string lights",
   },
   {
     name: "The Cannery Restaurant",
@@ -127,7 +133,8 @@ const RESTAURANTS = [
     price: "$$$",
     description:
       "Set in a converted canning factory on the Niagara River. Floor-to-ceiling windows, sunset views, and a menu built around local ingredients.",
-    image: "Waterfront dining at The Cannery with Niagara River sunset views",
+    imageUrl: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=500&q=80",
+    imageAlt: "Waterfront restaurant dining with sunset views",
   },
   {
     name: "Weinkeller",
@@ -136,7 +143,8 @@ const RESTAURANTS = [
     price: "$$$",
     description:
       "An underground wine bar and bistro with an old-world atmosphere. Over 500 wines by the glass. Perfect for a cozy, intimate dinner.",
-    image: "Stone cellar dining room at Weinkeller with candlelight and wine wall",
+    imageUrl: "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=500&q=80",
+    imageAlt: "Cozy cellar dining room with wine collection",
   },
 ];
 
@@ -336,8 +344,14 @@ export default function CouplesSpaPage() {
               <AnimatedSection key={spa.name} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
                   <div className="flex flex-col sm:flex-row">
-                    <div className="sm:w-72 h-48 sm:h-auto bg-gradient-to-br from-rose-50 to-purple-50 flex items-center justify-center text-gray-400 text-sm px-4 text-center shrink-0">
-                      {spa.image}
+                    <div className="sm:w-72 h-48 sm:h-auto relative overflow-hidden shrink-0">
+                      <Image
+                        src={spa.imageUrl}
+                        alt={spa.imageAlt}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 288px"
+                      />
                     </div>
                     <div className="flex-1 p-6 sm:p-8">
                       <div className="flex items-start justify-between gap-4 mb-2">
@@ -390,8 +404,14 @@ export default function CouplesSpaPage() {
             {RESTAURANTS.map((restaurant, i) => (
               <AnimatedSection key={restaurant.name} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className="h-40 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center text-gray-400 text-sm px-4 text-center">
-                    {restaurant.image}
+                  <div className="h-40 relative overflow-hidden">
+                    <Image
+                      src={restaurant.imageUrl}
+                      alt={restaurant.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-start justify-between mb-1">

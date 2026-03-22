@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Clock,
   Users,
@@ -30,7 +31,8 @@ const STOPS = [
     description:
       "Your driver arrives in the Mazda CX-90 at your GTA address. Complimentary bottled water, phone chargers, and a curated playlist for the scenic drive.",
     icon: Car,
-    image: "Luxury Mazda CX-90 at sunrise outside a residential home",
+    imageUrl: "https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=600&q=80",
+    imageAlt: "Luxury SUV ready for private tour pickup",
     gradient: "from-sky-400 to-blue-500",
   },
   {
@@ -39,7 +41,8 @@ const STOPS = [
     description:
       "One of the world's largest floral clocks with over 16,000 carpet bedding plants. A perfect first photo op with vibrant seasonal blooms as your backdrop.",
     icon: Flower2,
-    image: "The iconic Floral Clock with vibrant seasonal flower arrangements",
+    imageUrl: "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=600&q=80",
+    imageAlt: "Vibrant floral garden display",
     gradient: "from-green-400 to-emerald-500",
   },
   {
@@ -48,7 +51,8 @@ const STOPS = [
     description:
       "Stand above the Niagara Gorge and watch Class 6 rapids churn below. Feel the raw power of nature from one of the most dramatic viewpoints in Ontario.",
     icon: Waves,
-    image: "Dramatic aerial view of the Niagara Whirlpool and churning rapids",
+    imageUrl: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&q=80",
+    imageAlt: "Dramatic river gorge with churning rapids",
     gradient: "from-cyan-400 to-teal-500",
   },
   {
@@ -57,7 +61,8 @@ const STOPS = [
     description:
       "Visit a world-class estate winery in the charming town of Niagara-on-the-Lake. Sample award-winning Icewines, Pinot Noirs, and Chardonnays with a guided tasting.",
     icon: Wine,
-    image: "Elegant winery tasting room in Niagara-on-the-Lake with vineyard views",
+    imageUrl: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=600&q=80",
+    imageAlt: "Wine tasting at a vineyard estate winery",
     gradient: "from-purple-400 to-violet-500",
   },
   {
@@ -66,7 +71,8 @@ const STOPS = [
     description:
       "Stroll the picturesque main street of Niagara-on-the-Lake. Browse boutique shops, grab artisan ice cream, and soak in the small-town charm of Canada's prettiest town.",
     icon: Camera,
-    image: "Queen Street in Niagara-on-the-Lake with historic buildings and flowers",
+    imageUrl: "https://images.unsplash.com/photo-1464013778555-8e723c2f01f8?w=600&q=80",
+    imageAlt: "Charming heritage town main street with shops",
     gradient: "from-amber-400 to-orange-500",
   },
   {
@@ -75,7 +81,8 @@ const STOPS = [
     description:
       "The main event. Explore Horseshoe Falls from Table Rock, walk the gorge trail, and feel the mist on your face. Your driver stays nearby — explore at your own pace.",
     icon: Mountain,
-    image: "Panoramic view of Horseshoe Falls with mist rising and rainbow visible",
+    imageUrl: "https://images.unsplash.com/photo-1512351735230-a07ebdf5b5e1?w=600&q=80",
+    imageAlt: "Horseshoe Falls at Niagara with mist and rainbow",
     gradient: "from-blue-500 to-indigo-600",
   },
   {
@@ -84,7 +91,8 @@ const STOPS = [
     description:
       "Relax in the luxurious CX-90 as we drive you back through wine country and along the lakeshore. Door-to-door — right back to your address.",
     icon: Car,
-    image: "Sunset highway drive with golden light through the windshield",
+    imageUrl: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=600&q=80",
+    imageAlt: "Scenic highway drive at golden hour",
     gradient: "from-orange-400 to-rose-500",
   },
 ];
@@ -169,12 +177,14 @@ export default function NiagaraFlagshipPage() {
                 <AnimatedSection key={stop.title} delay={i * 0.08}>
                   <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="flex flex-col sm:flex-row">
-                      {/* Image placeholder */}
-                      <div className="sm:w-72 h-48 sm:h-auto bg-gray-100 flex items-center justify-center text-gray-400 text-sm px-4 text-center relative overflow-hidden shrink-0">
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${stop.gradient} opacity-10`}
+                      <div className="sm:w-72 h-48 sm:h-auto relative overflow-hidden shrink-0">
+                        <Image
+                          src={stop.imageUrl}
+                          alt={stop.imageAlt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, 288px"
                         />
-                        <span className="relative z-10">{stop.image}</span>
                       </div>
 
                       {/* Content */}
@@ -285,32 +295,42 @@ export default function NiagaraFlagshipPage() {
               {
                 name: "Maid of the Mist",
                 price: "$35/person",
-                image: "Tourists on the Maid of the Mist boat surrounded by mist",
+                imageUrl: "https://images.unsplash.com/photo-1493456548192-bb71fe1135b5?w=400&q=80",
+                imageAlt: "Boat tour approaching Niagara Falls",
                 desc: "Get drenched in the spray of Horseshoe Falls on this legendary boat ride.",
               },
               {
                 name: "Skylon Tower Dinner",
                 price: "$65/person",
-                image: "View of Niagara Falls from Skylon Tower revolving restaurant",
+                imageUrl: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80",
+                imageAlt: "Fine dining restaurant with panoramic views",
                 desc: "Dine 775 feet above the Falls in the famous revolving restaurant.",
               },
               {
                 name: "Niagara Heli-Tour",
                 price: "$160/person",
-                image: "Helicopter flying over Niagara Falls with panoramic views",
+                imageUrl: "https://images.unsplash.com/photo-1534276913491-12949ea03662?w=400&q=80",
+                imageAlt: "Helicopter tour over scenic landscape",
                 desc: "12-minute helicopter flight over the Falls, Gorge, and wine country.",
               },
               {
                 name: "Wine Tasting",
                 price: "$25/person",
-                image: "Premium wine tasting flight at a Niagara-on-the-Lake winery",
+                imageUrl: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80",
+                imageAlt: "Wine tasting flight at a winery",
                 desc: "Guided tasting at a premier NOTL estate with award-winning vintages.",
               },
             ].map((addon, i) => (
               <AnimatedSection key={addon.name} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className="h-36 bg-gray-100 flex items-center justify-center text-gray-400 text-xs px-3 text-center">
-                    {addon.image}
+                  <div className="h-36 relative overflow-hidden">
+                    <Image
+                      src={addon.imageUrl}
+                      alt={addon.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 25vw"
+                    />
                   </div>
                   <div className="p-5 flex-1 flex flex-col">
                     <h3 className="font-bold text-gray-900 mb-1">

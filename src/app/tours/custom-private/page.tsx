@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Clock,
   Users,
@@ -25,37 +26,43 @@ const IDEAS = [
     title: "Winery Crawl",
     desc: "Hit 3-4 premium wineries across NOTL and the Twenty Valley. Ice wine, Pinot Noir, and vineyard lunches.",
     icon: "🍷",
-    image: "Row of wine bottles at a Niagara winery tasting room",
+    imageUrl: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=400&q=80",
+    imageAlt: "Wine tasting at a vineyard winery",
   },
   {
     title: "Photography Tour",
     desc: "Chase the best light at the Falls, gorge trails, and historic NOTL. Your driver knows every angle.",
     icon: "📸",
-    image: "Photographer with camera at Niagara Falls golden hour",
+    imageUrl: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=400&q=80",
+    imageAlt: "Photographer capturing a scenic landscape",
   },
   {
     title: "Family Fun Day",
     desc: "Butterfly Conservatory, Clifton Hill, Bird Kingdom, and Falls up close. Activities for all ages.",
     icon: "🎢",
-    image: "Family enjoying Clifton Hill attractions near Niagara Falls",
+    imageUrl: "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=400&q=80",
+    imageAlt: "Family enjoying attractions",
   },
   {
     title: "Foodie Trail",
     desc: "Farm-to-table restaurants, artisan cheese makers, ice cream stops, and a cooking class in wine country.",
     icon: "🍽️",
-    image: "Farm-to-table dining spread with local Ontario ingredients",
+    imageUrl: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80",
+    imageAlt: "Gourmet farm-to-table dining spread",
   },
   {
     title: "Seasonal Special",
     desc: "Cherry blossom season, fall colours along the escarpment, winter Festival of Lights, or summer sunset cruises.",
     icon: "🍁",
-    image: "Fall foliage along the Niagara Parkway with orange and red leaves",
+    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    imageAlt: "Beautiful fall foliage along a scenic road",
   },
   {
     title: "Multi-Day Adventure",
     desc: "Combine Niagara, Toronto, and wine country into a 2-3 day luxury road trip with hotel recommendations.",
     icon: "🗺️",
-    image: "Luxury SUV on a scenic Ontario highway at sunrise",
+    imageUrl: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&q=80",
+    imageAlt: "Scenic highway road trip at golden hour",
   },
 ];
 
@@ -197,8 +204,14 @@ export default function CustomTourPage() {
             {IDEAS.map((idea, i) => (
               <AnimatedSection key={idea.title} delay={i * 0.08}>
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className="h-36 bg-gradient-to-br from-amber-50 to-orange-50 flex items-center justify-center text-gray-400 text-sm px-4 text-center">
-                    {idea.image}
+                  <div className="h-36 relative overflow-hidden">
+                    <Image
+                      src={idea.imageUrl}
+                      alt={idea.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-center gap-2 mb-2">

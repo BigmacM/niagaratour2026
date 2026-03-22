@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafaf9;
+  --foreground: #1c1917;
+  --maple: #f17316;
+  --falls: #06b6d4;
+  --forest: #16a34a;
+  --crimson: #D80621;
+  --gold: #FFD700;
 }
 
 html {
@@ -14,6 +19,139 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
+}
+
+/* Shimmer effect for CTAs */
+.shimmer-btn {
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  background-image: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 75%
+  );
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Canadian maple leaf decorative background */
+.maple-bg {
+  position: relative;
+}
+.maple-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 8 L44 22 L50 18 L46 28 L55 25 L48 34 L58 38 L48 40 L55 49 L46 44 L50 55 L44 50 L40 64 L36 50 L30 55 L34 44 L25 49 L32 40 L22 38 L32 34 L25 25 L34 28 L30 18 L36 22 Z' fill='%23f1731606' /%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--maple), var(--falls));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, #f17316, #D80621);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Subtle texture overlay */
+.texture-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.03' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* Waterfall mist animation */
+@keyframes mist {
+  0%, 100% { opacity: 0.3; transform: translateY(0) scale(1); }
+  50% { opacity: 0.6; transform: translateY(-20px) scale(1.1); }
+}
+.animate-mist {
+  animation: mist 4s ease-in-out infinite;
+}
+
+/* Warm gradient backgrounds */
+.bg-warm-gradient {
+  background: linear-gradient(135deg, #fef7ee 0%, #fff7ed 25%, #fefce8 50%, #f0fdf4 100%);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(
+    135deg,
+    #0e7490 0%,
+    #0891b2 20%,
+    #06b6d4 40%,
+    #22d3ee 60%,
+    #0891b2 80%,
+    #0e7490 100%
+  );
+}
+
+/* Pulse ring for CTA buttons */
+.pulse-ring {
+  position: relative;
+}
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  border: 2px solid var(--maple);
+  animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulseRing {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Safe area for mobile */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @layer utilities {

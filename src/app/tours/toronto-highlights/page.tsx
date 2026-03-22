@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Clock,
   Users,
@@ -28,7 +29,8 @@ const STOPS = [
     description:
       "Start your day at Canada's most iconic landmark. Ride the glass elevator to the observation deck for breathtaking 360° views of the city and Lake Ontario. Dare to walk on the Glass Floor 342 metres above the ground.",
     icon: Landmark,
-    image: "CN Tower observation deck with panoramic city views",
+    imageUrl: "https://images.unsplash.com/photo-1517090504332-8f35b58e9342?w=600&q=80",
+    imageAlt: "CN Tower against the Toronto skyline",
     gradient: "from-slate-500 to-gray-600",
   },
   {
@@ -36,7 +38,8 @@ const STOPS = [
     description:
       "Wander the cobblestone lanes of this beautifully restored Victorian industrial district. Browse contemporary art galleries, artisan shops, and grab a craft coffee at one of the heritage buildings.",
     icon: Camera,
-    image: "Cobblestone streets of the Distillery District with Victorian architecture",
+    imageUrl: "https://images.unsplash.com/photo-1569959220744-ff553533f492?w=600&q=80",
+    imageAlt: "Cobblestone streets of the Distillery District",
     gradient: "from-amber-500 to-orange-500",
   },
   {
@@ -44,7 +47,8 @@ const STOPS = [
     description:
       "Named the world's best food market by National Geographic. Sample peameal bacon sandwiches, browse artisan cheeses, and discover over 120 specialty vendors under one roof.",
     icon: UtensilsCrossed,
-    image: "Inside St. Lawrence Market with bustling food vendors and fresh produce",
+    imageUrl: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=600&q=80",
+    imageAlt: "Fresh produce and vendors at a food market",
     gradient: "from-red-400 to-rose-500",
   },
   {
@@ -52,7 +56,8 @@ const STOPS = [
     description:
       "A bohemian neighbourhood bursting with colour. Vintage clothing stores, international food stalls, and vibrant street art make this one of Toronto's most unique experiences.",
     icon: ShoppingBag,
-    image: "Colourful houses and vintage shops in Kensington Market",
+    imageUrl: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=600&q=80",
+    imageAlt: "Colourful street with vibrant shops and art",
     gradient: "from-teal-400 to-emerald-500",
   },
   {
@@ -60,7 +65,8 @@ const STOPS = [
     description:
       "End with a stroll along the Harbourfront waterfront. Watch the ferries cross to the Toronto Islands with the skyline behind you — the perfect grand finale photo.",
     icon: Building2,
-    image: "Toronto skyline from the Harbourfront with sailboats on Lake Ontario",
+    imageUrl: "https://images.unsplash.com/photo-1744639375478-11bcbf343426?w=600&q=80",
+    imageAlt: "Toronto skyline from the waterfront",
     gradient: "from-blue-400 to-indigo-500",
   },
 ];
@@ -145,9 +151,14 @@ export default function TorontoHighlightsPage() {
                 <AnimatedSection key={stop.title} delay={i * 0.08}>
                   <div className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow">
                     <div className="flex flex-col sm:flex-row">
-                      <div className="sm:w-72 h-48 sm:h-auto bg-gray-100 flex items-center justify-center text-gray-400 text-sm px-4 text-center relative overflow-hidden shrink-0">
-                        <div className={`absolute inset-0 bg-gradient-to-br ${stop.gradient} opacity-10`} />
-                        <span className="relative z-10">{stop.image}</span>
+                      <div className="sm:w-72 h-48 sm:h-auto relative overflow-hidden shrink-0">
+                        <Image
+                          src={stop.imageUrl}
+                          alt={stop.imageAlt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, 288px"
+                        />
                       </div>
                       <div className="flex-1 p-6 sm:p-8">
                         <div className="flex items-center gap-3 mb-3">
@@ -219,37 +230,42 @@ export default function TorontoHighlightsPage() {
               {
                 name: "CN Tower",
                 price: "$45/person",
-                image: "CN Tower observation deck with Glass Floor and city panorama",
+                imageUrl: "https://images.unsplash.com/photo-1517090504332-8f35b58e9342?w=400&q=80",
+                imageAlt: "CN Tower observation deck",
                 desc: "Skip-the-line access to the observation deck, Glass Floor, and outdoor SkyTerrace.",
-                gradient: "from-slate-500 to-gray-600",
               },
               {
                 name: "Ripley's Aquarium",
                 price: "$40/person",
-                image: "Underwater tunnel at Ripley's Aquarium with sharks and rays",
+                imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80",
+                imageAlt: "Underwater tunnel at an aquarium",
                 desc: "Walk through the stunning underwater tunnel and explore 20,000+ marine animals.",
-                gradient: "from-blue-500 to-cyan-500",
               },
               {
                 name: "Canada's Wonderland",
                 price: "$55/person",
-                image: "Leviathan roller coaster at Canada's Wonderland",
+                imageUrl: "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?w=400&q=80",
+                imageAlt: "Roller coaster at an amusement park",
                 desc: "Canada's premier amusement park with 200+ attractions, thrill rides, and a waterpark.",
-                gradient: "from-red-500 to-orange-500",
               },
               {
                 name: "Toronto Zoo",
                 price: "$30/person",
-                image: "Giant panda exhibit at the Toronto Zoo",
+                imageUrl: "https://images.unsplash.com/photo-1474511320723-9a56873571b7?w=400&q=80",
+                imageAlt: "Animals at a zoo exhibit",
                 desc: "Canada's largest zoo with 5,000+ animals across 10 km of trails. Great for families.",
-                gradient: "from-green-500 to-emerald-500",
               },
             ].map((addon, i) => (
               <AnimatedSection key={addon.name} delay={i * 0.1}>
                 <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden hover:shadow-lg transition-shadow h-full flex flex-col">
-                  <div className={`h-36 bg-gradient-to-br ${addon.gradient} bg-opacity-10 flex items-center justify-center text-gray-400 text-xs px-3 text-center relative`}>
-                    <div className={`absolute inset-0 bg-gradient-to-br ${addon.gradient} opacity-10`} />
-                    <span className="relative z-10">{addon.image}</span>
+                  <div className="h-36 relative overflow-hidden">
+                    <Image
+                      src={addon.imageUrl}
+                      alt={addon.imageAlt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 25vw"
+                    />
                   </div>
                   <div className="p-5 flex-1 flex flex-col">
                     <h3 className="font-bold text-gray-900 mb-1">
